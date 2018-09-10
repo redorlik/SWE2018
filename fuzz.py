@@ -1,13 +1,15 @@
 from fuzzing.fuzzer import FuzzExecutor
 
 # Files to use as initial input seed.
-file_list = ["./pdf/2017-12-02_Dagbladet_Information_-_02-12_2017.pdf",
- "./pdf/CV_eng_2015.pdf", "./pdf/PID3286025.pdf"]
+file_list = ["./examples/test_string.txt"]
+#["./pdf/2017-12-02_Dagbladet_Information_-_02-12_2017.pdf",
+# "./pdf/CV_eng_2015.pdf", "./pdf/PID3286025.pdf"]
 
 # List of applications to test.
-apps_under_test = ["/Applications/Adobe Acrobat DC/Adobe Acrobat.app/Contents/MacOS/AdobeAcrobat",
+apps_under_test = ["python&rle.py&-e"
+                #"/Applications/Adobe Acrobat DC/Adobe Acrobat.app/Contents/MacOS/AdobeAcrobat",
                    #"/Applications/PDFpen 6.app/Contents/MacOS/PDFpen 6",
-                   "/Applications/Preview.app/Contents/MacOS/Preview",
+                   #"/Applications/Preview.app/Contents/MacOS/Preview",
                    ]
 
 number_of_runs = 13
