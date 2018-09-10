@@ -24,4 +24,6 @@ def test_invariant():
         assert rle_decoder(rle_encoder(x))
 
 if __name__ == '__main__':
+    # run 'py-afl-fuzz -o ./pdf/ -i ./examples/ -- (which python) test_rle.py'
+    # from commandline to use afl to fuzz the encoder.
     print(rle_encoder(sys.stdin.read()))
