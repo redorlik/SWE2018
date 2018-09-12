@@ -7,6 +7,8 @@ def rle_encoder(txt):
 
          "bbbkkk" bliver "b3k3"
          """
+    if not txt:
+        return ''
     c = txt[0]
     i = 1
     res = []
@@ -38,7 +40,14 @@ if __name__ == "__main__":
     import sys
     args = sys.argv
     print(args)
-    if (args[1]=='-d'):
-        print(rle_decoder(args[2]))
+    if len(args)==3:
+        dat = args[2]
+    elif len(args)==2:
+        dat = sys.stdin.read()
     else:
-        print(rle_encoder(args[2]))
+        print("Error")
+        exit(0)
+    if args[1]=='-d':
+        print(rle_decoder(dat))
+    else:
+        print(rle_encoder(dat))

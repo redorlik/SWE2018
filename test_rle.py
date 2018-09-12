@@ -1,13 +1,16 @@
 from rle import rle_encoder,rle_decoder
 import sys
-import afl
+from hypothesis import given
+from hypothesis.strategies import text
+#import afl
 
-afl.init()
+#afl.init()
 
 def test_simple():
     assert rle_encoder("bbbkkk") == "b3k3"
 def test_advanced():
     assert rle_encoder("ffffiiiii") == "f4i5"
+
 def test_single():
     assert rle_encoder('k') == "k1"
     assert rle_encoder('kf') == "k1f1"
@@ -21,7 +24,12 @@ def test_invariant():
     for x in [
         'adfdgdfgfdsg',
         'asdsassasfgsdfhgjhgfdsdfghjhgfd']:
-        assert rle_decoder(rle_encoder(x))
+        assert rle_decoder(rle_encoder(x)) == x
+
+@given(text())
+def test_hypo(x):
+    print(x)
+    assert rle_decoder(rle_encoder(x)) == x
 
 if __name__ == '__main__':
     # run 'py-afl-fuzz -o ./pdf/ -i ./examples/ -- (which python) test_rle.py'
