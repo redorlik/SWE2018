@@ -7,18 +7,20 @@ from hypothesis.strategies import text
 #afl.init()
 
 def test_simple():
-    assert rle_encoder("bbbkkk") == "b3k3"
+    assert rle_encoder("bbbkkk") == ["b3","k3"]
 def test_advanced():
-    assert rle_encoder("ffffiiiii") == "f4i5"
+    assert rle_encoder("ffffiiiii") == ["f4","i5"]
 
 def test_single():
-    assert rle_encoder('k') == "k1"
-    assert rle_encoder('kf') == "k1f1"
+    assert rle_encoder('k') == ["k1"]
+    assert rle_encoder('kf') == ["k1","f1"]
 
 #  Tests for rle_decoder
+def test_slashzero_enc():
+    assert rle_encoder("/0") == ["/1","01"]
 
 def test_simple_decoder():
-    assert rle_decoder('k3b3') == 'kkkbbb'
+    assert rle_decoder(['k3','b3']) == 'kkkbbb'
 
 def test_invariant():
     for x in [
@@ -26,10 +28,10 @@ def test_invariant():
         'asdsassasfgsdfhgjhgfdsdfghjhgfd']:
         assert rle_decoder(rle_encoder(x)) == x
 
-# @given(text())
-# def test_hypo(x):
-#     print(x)
-#     assert rle_decoder(rle_encoder(x)) == x
+@given(text())
+def test_hypo(x):
+    print(x)
+    assert rle_decoder(rle_encoder(x)) == x
 
 if __name__ == '__main__':
     # run 'py-afl-fuzz -o ./pdf/ -i ./examples/ -- (which python) test_rle.py'

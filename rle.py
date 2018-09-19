@@ -1,8 +1,8 @@
 
 
 def rle_encoder(txt):
-    """ RLE encoder modetager en streng og returner en streng
-        med så gentagne bogstaver bilver erstattet med bogstavet og
+    """ RLE encoder modetager en streng og returner en liste
+        af gentagne bogstaver bliver erstattet med bogstavet og
          antallet af gentagelser
 
          "bbbkkk" bliver "b3k3"
@@ -20,17 +20,17 @@ def rle_encoder(txt):
             i = 1
             c = x
     res.append(f'{c}{i}')
-    return ''.join(res)
+    return res
 
 def rle_decoder(inp):
     res = []
-    i = 0
-    while i<len(inp):
-        c = inp[i]
-        i += 1
+
+    for kode in inp:
+        c = kode[0]
+        i = 1
         count = 0
-        while i<len(inp) and inp[i].isdigit():
-            count = count*10 + int(inp[i])
+        while i<len(kode) and kode[i].isdigit():
+            count = count*10 + int(kode[i])
             i += 1
         res.append(c*count)
 
