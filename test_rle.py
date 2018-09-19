@@ -26,10 +26,10 @@ def test_invariant():
         'asdsassasfgsdfhgjhgfdsdfghjhgfd']:
         assert rle_decoder(rle_encoder(x)) == x
 
-@given(text())
-def test_hypo(x):
-    print(x)
-    assert rle_decoder(rle_encoder(x)) == x
+# @given(text())
+# def test_hypo(x):
+#     print(x)
+#     assert rle_decoder(rle_encoder(x)) == x
 
 if __name__ == '__main__':
     # run 'py-afl-fuzz -o ./pdf/ -i ./examples/ -- (which python) test_rle.py'
