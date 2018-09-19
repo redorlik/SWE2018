@@ -1,3 +1,3 @@
 Hello SWE2018
 
-bazar
+This is the repository used in the course
