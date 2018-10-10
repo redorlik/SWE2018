@@ -7,20 +7,20 @@ from hypothesis.strategies import text
 #afl.init()
 
 def test_simple():
-    assert rle_encoder("bbbkkk") == ["b3","k3"]
+    assert rle_encoder("bbbkkk") == [("b",3),("k",3)]
 def test_advanced():
-    assert rle_encoder("ffffiiiii") == ["f4","i5"]
+    assert rle_encoder("ffffiiiii") == [("f",4),("i",5)]
 
 def test_single():
-    assert rle_encoder('k') == ["k1"]
-    assert rle_encoder('kf') == ["k1","f1"]
+    assert rle_encoder('k') == [("k",1)]
+    assert rle_encoder('kf') == [("k",1),("f",1)]
 
 #  Tests for rle_decoder
 def test_slashzero_enc():
-    assert rle_encoder("/0") == ["/1","01"]
+    assert rle_encoder("/0") == [("/",1),("0",1)]
 
 def test_simple_decoder():
-    assert rle_decoder(['k3','b3']) == 'kkkbbb'
+    assert rle_decoder([("b",3),("k",3)]) == 'bbbkkk'
 
 def test_invariant():
     for x in [
